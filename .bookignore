@@ -1,0 +1,10 @@
+_book/
+build/
+
+*.sh
+*.yml
+*.pdf
+*.docx
+
+.gitignore
+useful-regex.md

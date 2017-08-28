@@ -1,0 +1,11 @@
+{
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "plugins": ["build", "gist"],
+    "pluginsConfig": {
+        "build": {
+            "format": "docx",
+            "output": "build/junit-guide.docx"
+        }
+    }
+}
