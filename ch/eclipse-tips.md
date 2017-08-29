@@ -1,4 +1,6 @@
-# Eclipse 技巧
+#
+
+Eclipse 技巧
 
 ## 静态导入设置
 
@@ -6,22 +8,41 @@
 
 1. 开启静态导入
 
+<<<<<<< HEAD
+进入`Preference -> Java -> Editor -> Content Assist`，勾选`Use static imports (only 1.5 or higher)`
+![enable-static-import](./assets/enable-eclipse-static-imports.png)
+
+2.  添加静态导入的类型
+
+        进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
+        `org.junit`
+        `org.junit.Assert`
+        `org.hamcrest.CoreMatchers`
+        `org.hamcrest.Matchers`
+        `org.mockito.BDDMockito`或`org.mockito.Mockito`
+        ![add-static-import-types](./assets/add-eclipse-static-import-types.png)
+        > 如果还有其它需要静态导入的成员，请自行添加
+
+    =======
     进入`Preference -> Java -> Editor -> Content Assist`，勾选`Use static imports (only 1.5 or higher)`
     ![enable-static-import](./assets/enable-eclipse-static-imports.png)
 
-2. 添加静态导入的类型
+3.  添加静态导入的类型
 
-    进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：  
-    `org.junit`  
-    `org.junit.Assert`  
-    `org.hamcrest.CoreMatchers`  
-    `org.hamcrest.Matchers`  
-    `org.mockito.BDDMockito`或`org.mockito.Mockito`  
-    ![add-static-import-types](./assets/add-eclipse-static-import-types.png)
-    > 如果还有其它需要静态导入的成员，请自行添加
+进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
+`org.junit`
+`org.junit.Assert`
+`org.hamcrest.CoreMatchers`
+`org.hamcrest.Matchers`
+`org.mockito.BDDMockito`或`org.mockito.Mockito`
+![add-static-import-types](./assets/add-eclipse-static-import-types.png)
+
+> 如果还有其它需要静态导入的成员，请自行添加
+>
+> > > > > > > Finish Eclipse Tips
 
 这样修改之后，不需再敲击`Assert.`之后才能选择`assertThat`方法；直接敲击`at`之后代码补全就可以找到对应的方法，最终效果如下：
-    ![static-members-auto-pops-up](./assets/eclipse-static-member-auto-pops-up.png)
+![static-members-auto-pops-up](./assets/eclipse-static-member-auto-pops-up.png)
 
 ## 测试代码模板
 
@@ -42,19 +63,31 @@ public void should_...() {
 1. 进入`Preference -> Editor -> Code -> Templates`设置界面，点击`New...`开始新建模板
 
 2. 在弹出的新建对话框中填入：
-    * Name：`sho` 模板的名字，敲击这几个字母后可以激活模板
-    * Context：`Java Type Members` 仅在添加类型成员时生效
-    * Description：`@Test public void should...() {}` 在代码补全对话框弹出时显式的提示
-    * Pattern：
-    ```java
-    @${testType:newType(org.junit.Test)}
-    public void should_${testName}() throws Exception {    
-    }
-    ```
-    要补全的代码模板，其中有一些变量
-    > 界面上的选项的具体说明可以单击对话框左下角的`?`查看说明。
-    
+   - Name：`sho` 模板的名字，敲击这几个字母后可以激活模板
+   - Context：`Java Type Members` 仅在添加类型成员时生效
+   - Description：`@Test public void should...() {}` 在代码补全对话框弹出时显式的提示
+   - Pattern：
+   ```java
+   @${testType:newType(org.junit.Test)}
+   public void should_${testName}() throws Exception {
+   }
+   ```
+   要补全的代码模板，其中有使用一些变量（引用类型定义`org.junit.Test`或是占位`${testName}`）
 
+> 此对话框中选项的具体说明可以单击对话框左下角的`?`查看说明。
 
+![create-eclipse-code-template](./assets/create-eclipse-code-template.png)
 
+最终效果如下：
+
+![eclipse-sho-template-pops-up](./assets/eclipse-sho-template-pops-up.png)
+
+还可以使用导出`Export`功能把配置好的模板导出一个 xml 文件，然后通过导入`Import`功能直接导入。
+[这里](https://gist.github.com/qinyu/03031d89afa591e7ed8bd263f71d96ee)有一份配置供参考，包括了：
+
+- `sho`生成简单的测试方法（上面例子）
+- `gwt`生成测试方法，方法体中有`// Given`、`// When` 和 `// Then` 隔开
+- `atis`生成`assertThat(..., is(...))`的语句
+
+模板如下：
 {% gist id="qinyu/b9d3ea784a36ded8a3f045e874390dbf", file="eclipse-junit-code-templates.xml" %}{% endgist %}
