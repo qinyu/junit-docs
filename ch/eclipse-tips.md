@@ -6,12 +6,12 @@
 
 1. 开启静态导入
 
-    进入`Java -> Editor -> Content Assist`，勾选`Use static imports (only 1.5 or higher)`
+    进入`Preference -> Java -> Editor -> Content Assist`，勾选`Use static imports (only 1.5 or higher)`
     ![enable-static-import](./assets/enable-eclipse-static-imports.png)
 
 2. 添加静态导入的类型
 
-    进入`Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：  
+    进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：  
     `org.junit`  
     `org.junit.Assert`  
     `org.hamcrest.CoreMatchers`  
@@ -35,15 +35,26 @@ public void should_...() {
 
 这里的代码每个测试都需要写一遍，太繁琐，我们可以使用代码模板来自动生成它。当设置好代码模板之后，只需要敲几个字母就可以把代码补全出来，我们就可以专注于代码中真正有意义的那部分：这个测试的场景（方法名）
 
-还有其他一些类似的情形，比如编写断言的时候，我们会写`assertThat(actual, is(matcher))`；也可以使用代码模板生产`assertThat(..., is(...))`
+还有其他一些类似的情形，比如编写断言的时候，我们会写`assertThat(actual, is(matcher))`；也可以使用代码模板生产`assertThat(..., is(...))`之后在专注于填充实际值和期待值。
 
-1. 生成简单的以`should`开头的测试方法，模板如下：
+下面以添加缩写为`sho`的生成测试方法的模板为例介绍设置方法。
 
-```java
-@${testType:newType(org.junit.Test)}
-public void should_${testName}() throws Exception {
-}
-```
+1. 进入`Preference -> Editor -> Code -> Templates`设置界面，点击`New...`开始新建模板
+
+2. 在弹出的新建对话框中填入：
+    * Name：`sho` 模板的名字，敲击这几个字母后可以激活模板
+    * Context：`Java Type Members` 仅在添加类型成员时生效
+    * Description：`@Test public void should...() {}` 在代码补全对话框弹出时显式的提示
+    * Pattern：
+    ```java
+    @${testType:newType(org.junit.Test)}
+    public void should_${testName}() throws Exception {    
+    }
+    ```
+    要补全的代码模板，其中有一些变量
+            > 界面上的选项的具体说明可以单击对话框左下角的`?`查看说明。
+    
+
 
 
 {% gist id="qinyu/b9d3ea784a36ded8a3f045e874390dbf", file="eclipse-junit-code-templates.xml" %}{% endgist %}
