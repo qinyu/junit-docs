@@ -1,3 +1,0 @@
-# Languages
-
-* [Chinese](ch/)
