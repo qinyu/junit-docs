@@ -1,28 +1,29 @@
 # 断言结果(讲义)
 
-对被测系统产生的结果进行检查的，通常使用测试框架提供的工具方法完成。
+对被测系统产生的结果进行检查的，通常使用测试框架提供的工具方法完成。
 
 断言包括：
+
 1. 直接给出测试结果(直接失败)
-2. 直接断言测试执行的状态(布尔值，非空)
+2.  直接断言测试执行的状态(布尔值，非空)
 3. 检查结果是否精确匹配期望值(给出期望值)
 4. 检查结果是否模糊匹配(给出偏差范围，或是条件)
 5. 检查抛出预期异常
 
 ![](http://xunitpatterns.com/Assertion%20Method.gif)
 
-断言必须兼顾**可读性**和**开发体验**。
+ 断言必须兼顾**可读性**和**开发体验**。
 
 推荐使用 AssertJ
 
 https://joel-costigliola.github.io/assertj/
 
-1. assertThat方法 和 Fluent 语法更流畅的表达断言
+1. assertThat 方法 和 Fluent 语法  更  流畅的表达断言
 2. 断言失败消息更清晰
-3. 内置了丰富的断言方法(包括BDD风格)以及它们的文档和示例
+3.  内置了丰富的断言方法(包括 BDD 风格)以及它们的文档和示例
 4. 可以使用代码自动完成
 
-## AsserJ 入门
+## AsserJ  入门
 
 https://joel-costigliola.github.io/assertj/assertj-core-quick-start.html
 
@@ -51,7 +52,7 @@ import org.assertj.core.api.Assertions.*;
 
 ### 尝试基本类型的断言
 
-> 利用IDE的自动完成功能，试试一些不常见的方法
+> 利用 IDE 的自动完成功能，试试一些不常见的方法
 
 ```java
 assertThat(anyInt).  // 大于或小于
@@ -91,7 +92,7 @@ assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
 
 ### Soft Assertion
 
-一组连续普通断言中如果中间一个失败，随后的断言都不会执行。
+一组连续普通断言中如果中间一个失败， 随后的断言都不会执行。
 
 > 试试故意让其中的断言失败，查看错误信息
 
@@ -105,8 +106,8 @@ softly.assertAll();
 
 ### 断言集合元素的属性
 
-> 试试POJO列表的单个属性、多个属性、嵌套属性
-> 再试试Map列表
+> 试试 POJO 列表的单个属性、多个属性、嵌套属性  
+> 再试试 Map 列表
 
 ```java
 assertThat(anyListOfObject).extracting(aPropertyName).
@@ -116,7 +117,7 @@ assertThat(anyListOfObject).extracting(aPropertyName, anotherPropertyName).conta
 
 ### JSON 支持
 
-https://github.com/lukas-krecan/JsonUnit#assertj
+直接使用 JsonPath 或者 https://github.com/lukas-krecan/JsonUnit#assertj
 
 ### 高级特性
 

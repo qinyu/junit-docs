@@ -3,7 +3,7 @@
 在单元测试的过程中，我们会遇到一些测试案例：
 
 1. 它们的测试逻辑都是一样的
-2. 不同的是测是的条件和期望值
+2.  不同的是测是的条件和期望值
 
 测试逻辑可抽象成一个测试模板，再提供给他一组测试数据让模板分别执行。我们可以利用参数化的测试用例。
 
@@ -27,8 +27,8 @@ public class FibonacciTest {
     // 参数使用公共的静态方法构造，返回一个数组的集合
     @Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {     
-                 { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }  
+        return Arrays.asList(new Object[][] {
+                 { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
            });
     }
 
@@ -36,7 +36,7 @@ public class FibonacciTest {
     private int fInput;
 
     private int fExpected;
-　
+
     // 参数通过公共的构造方法注入
     public FibonacciTest(int input, int expected) {
         this.fInput = input;
@@ -56,13 +56,13 @@ public class FibonacciTest {
 public class Fibonacci {
     public static int compute(int n) {
         int result = 0;
-    	
-        if (n <= 1) { 
-            result = n; 
-        } else { 
-            result = compute(n - 1) + compute(n - 2); 
+
+        if (n <= 1) {
+            result = n;
+        } else {
+            result = compute(n - 1) + compute(n - 2);
         }
-        
+
         return result;
     }
 }
@@ -70,7 +70,7 @@ public class Fibonacci {
 
 ## JUnit 4 参数化的问题
 
-1. 必须使用 Parameterized，无法和其它 Runner(如SpringJUnitRunner)一起使用。
+1. 必须使用 Parameterized，无法和其它 Runner(如 SpringJUnitRunner)一起使用。
 2. 不能为单个测试方法提供参数，参数只能赋值给成员变量
 3. 提供参数的方法比较单一，如果要从文件中读取数据，需要花时间开发一个简单的工具方法。
 4. 参数定义，生成，使用点分散，可读性较差
@@ -89,7 +89,7 @@ public class Fibonacci {
 </dependency>
 ```
 
-和JUnit 4最大的区别是：参数化的对象由“类”变成了“方法”。
+和 JUnit 4 最大的区别是：参数化的对象由“类”变成了“方法”。
 
 ```java
 // 参数化 Annotation 标注在方法上
@@ -101,7 +101,7 @@ void withValueSource(String word) {
 }
 ```
 
-JUnit 5 还提供了多种提供给参数的方式
+JUnit 5 还提供了多种提供参数的方式
 
 ```java
 // @ValueSource 注解可以提供四种**单个**(四选一)参数的值
@@ -173,12 +173,12 @@ enum Summer {
 @CsvSource({"true, 3.14159265359, AUGUST, 2018, 2018-08-23T22:00:00"})
 void testDefaultConverters(
     // 基本类型会调用 valueOf 转换
-    boolean b, 
-    double d, 
+    boolean b,
+    double d,
     // 枚举调用 valueOf 转换
     Summer s,
     // 调用对应的 parse 方法转换
-    Year y, 
+    Year y,
     // 时间格式支持 ISO 8601
     LocalDateTime dt) { }
 
@@ -237,7 +237,7 @@ public class PointConverter implements ArgumentConverter {
 void convertPoint(@ConvertWith(PointConverter.class) Point point) { }
 ```
 
-如和要把多个字符串转换成一个对象
+如和要把  多个字符串转换成一个对象
 
 ```java
 @ParameterizedTest
@@ -263,7 +263,7 @@ void testPointNorm(
 
 // 将多个参数转换成一个对象
 static class PointAggregator implements ArgumentsAggregator {
- 
+
     @Override
     Object aggregateArguments(
         ArgumentsAccessor arguments, ParameterContext context)
@@ -274,4 +274,3 @@ static class PointAggregator implements ArgumentsAggregator {
 
 }
 ```
-

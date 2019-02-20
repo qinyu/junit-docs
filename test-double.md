@@ -15,7 +15,7 @@
 
 ![](http://xunitpatterns.com/Types%20Of%20Test%20Doubles.gif)
 
-1. Dummy，为了让测试可以进行，不会在测试中使用，一般  用来填充参数
+1. Dummy，为了让测试可以进行，不会在测试中使用，一般用来填充参数
 2. Stub，为测试中的调用提供事先准备好的返回数据
 3. Spy，记录如何依赖在测试中如何被调用，包括次数、顺序、传入参数
 4. Fake，是一种真正的实现，但和生产环境实现不同，往往是简化实现(如内存数据库 H2)
@@ -37,6 +37,8 @@ https://static.javadoc.io/org.mockito/mockito-core/2.21.0/org/mockito/Mockito.ht
 
 ### 依赖
 
+- JUnit 4
+
 ```xml
 <dependency>
   <groupId>org.mockito</groupId>
@@ -44,6 +46,11 @@ https://static.javadoc.io/org.mockito/mockito-core/2.21.0/org/mockito/Mockito.ht
   <version>1.10.19</version>
   <scope>test</scope>
 </dependency>
+```
+
+- JUnit 5
+
+```xmli
 ```
 
 ### 静态导入
