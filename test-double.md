@@ -6,19 +6,20 @@
 
 那些依赖需要替换？
 
-1. 没有返回结果，也没有状态变化
-2. 还没有实现的代码
-3. 速度慢，不稳定(IO、网络、异步、生产或测试数据库)
-4. 准备起来十分困难（较大的文件）
+1. 还没有实现的代码
+2. 访问受限，如第三方数据或生产数据库
+3. 速度慢，不稳定(IO、网络、其它服务)
+4. 传递依赖太多，准备起来十分困难
+5. 没有返回结果，也没有副作用
 
 ##  替身的种类
 
 ![](http://xunitpatterns.com/Types%20Of%20Test%20Doubles.gif)
 
-1. Dummy，为了让测试可以进行，不会在测试中使用，一般用来填充参数
-2. Stub，为测试中的调用提供事先准备好的返回数据
-3. Spy，记录如何依赖在测试中如何被调用，包括次数、顺序、传入参数
-4. Fake，是一种真正的实现，但和生产环境实现不同，往往是简化实现(如内存数据库 H2)
+1. Dummy，为了让测试可以进行（编译通过），不会在测试中使用，一般用来填充参数
+2. Stub，事先准备好返回数据，在测试中的调用时使用这些数据代替真实调用的返回值
+3. Spy，记录如何测试中调用的方法的执行情况，包括调用次数、调用顺序、调用时传入参数
+4. Fake，是一种完整的实现，但和生产环境实现不同，但更轻量、更简单，如内存数据库 H2
 5. **Mock**，使用库自动生成的替身，可以完成 Stub 和 Spy 的功能。
 
 单元测试经常使用的是 Dummy 和 Mock
@@ -37,29 +38,13 @@ https://static.javadoc.io/org.mockito/mockito-core/2.21.0/org/mockito/Mockito.ht
 
 ### 依赖
 
-- JUnit 4
-
 ```xml
 <dependency>
-  <groupId>org.mockito</groupId>
-  <artifactId>mockito-all</artifactId>
-  <version>1.10.19</version>
-  <scope>test</scope>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>2.34.0</version>
+    <scope>test</scope>
 </dependency>
-```
-
-- JUnit 5
-
-```xmli
-```
-
-### 静态导入
-
-> Eclipse 需要导入进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
-
-```java
-import org.mockito.BDDMockito.*;
-import org.mockito.Mockito.*;
 ```
 
 ### 创建 Mock
@@ -152,3 +137,13 @@ assertThat(userCaptor.getValue()).isEqualTo("aUser")
 1. 提供使用该依赖作为参数的构造函数(**推荐**)
 2. 提供 package 可见的 setter
 3. 使用反射!!!(**慎重**)
+
+### IDE 设置
+
+> Eclipse 静态导入  
+> 进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
+
+```java
+import org.mockito.BDDMockito.*;
+import org.mockito.Mockito.*;
+```

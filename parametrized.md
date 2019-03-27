@@ -7,74 +7,6 @@
 
 测试逻辑可抽象成一个测试模板，再提供给他一组测试数据让模板分别执行。我们可以利用参数化的测试用例。
 
-## JUnit 4 示例
-
-```java
-import static org.junit.Assert.assertEquals;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-// 使用 Parameterized 这个 Runner
-@RunWith(Parameterized.class)
-public class FibonacciTest {
-
-    // 参数使用公共的静态方法构造，返回一个数组的集合
-    @Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                 { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
-           });
-    }
-
-    // 成员变量作为测试的参数
-    private int fInput;
-
-    private int fExpected;
-
-    // 参数通过公共的构造方法注入
-    public FibonacciTest(int input, int expected) {
-        this.fInput = input;
-        this.fExpected = expected;
-    }
-
-    // 测试方法不能you参数
-    @Test
-    public void test() {
-        // 测试方法中使用成员变量作为测试的参数
-        assertEquals(fExpected, Fibonacci.compute(fInput));
-    }
-}
-```
-
-```java
-public class Fibonacci {
-    public static int compute(int n) {
-        int result = 0;
-
-        if (n <= 1) {
-            result = n;
-        } else {
-            result = compute(n - 1) + compute(n - 2);
-        }
-
-        return result;
-    }
-}
-```
-
-## JUnit 4 参数化的问题
-
-1. 必须使用 Parameterized，无法和其它 Runner(如 SpringJUnitRunner)一起使用。
-2. 不能为单个测试方法提供参数，参数只能赋值给成员变量
-3. 提供参数的方法比较单一，如果要从文件中读取数据，需要花时间开发一个简单的工具方法。
-4. 参数定义，生成，使用点分散，可读性较差
-
 ## JUnit 5 参数化示例
 
 首先需要添加依赖
@@ -274,3 +206,71 @@ static class PointAggregator implements ArgumentsAggregator {
 
 }
 ```
+
+## JUnit 4 示例
+
+```java
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+// 使用 Parameterized 这个 Runner
+@RunWith(Parameterized.class)
+public class FibonacciTest {
+
+    // 参数使用公共的静态方法构造，返回一个数组的集合
+    @Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+                 { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
+           });
+    }
+
+    // 成员变量作为测试的参数
+    private int fInput;
+
+    private int fExpected;
+
+    // 参数通过公共的构造方法注入
+    public FibonacciTest(int input, int expected) {
+        this.fInput = input;
+        this.fExpected = expected;
+    }
+
+    // 测试方法不能you参数
+    @Test
+    public void test() {
+        // 测试方法中使用成员变量作为测试的参数
+        assertEquals(fExpected, Fibonacci.compute(fInput));
+    }
+}
+```
+
+```java
+public class Fibonacci {
+    public static int compute(int n) {
+        int result = 0;
+
+        if (n <= 1) {
+            result = n;
+        } else {
+            result = compute(n - 1) + compute(n - 2);
+        }
+
+        return result;
+    }
+}
+```
+
+## JUnit 4 参数化的问题
+
+1. 必须使用 Parameterized，无法和其它 Runner(如 SpringJUnitRunner)一起使用。
+2. 不能为单个测试方法提供参数，参数只能赋值给成员变量
+3. 提供参数的方法比较单一，如果要从文件中读取数据，需要花时间开发一个简单的工具方法。
+4. 参数定义，生成，使用点分散，可读性较差
