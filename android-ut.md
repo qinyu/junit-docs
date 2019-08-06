@@ -1,4 +1,4 @@
-# mCloud Android单元测试指南
+# Android单元测试指南
 
 ### 原理
 
