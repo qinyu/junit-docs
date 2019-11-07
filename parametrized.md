@@ -74,7 +74,7 @@ void withMethodSource(String word, int length) { }
 // 返回泛型类型为Arguments的Iterable
 private static Stream<Arguments> createWordsWithLength() {
     return Stream.of(
-        // Arguments.of 生成一套参数
+        // Arguments.of 生成一套参数
         Arguments.of("Hello", 5),
         Arguments.of("JUnit 5", 7));
 }

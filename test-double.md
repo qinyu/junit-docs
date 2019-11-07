@@ -26,7 +26,7 @@
 
 ## 原则
 
-1. 尽量别用 Mock(stub)，优先使用正真的实现（**！！尤其重要！！**）
+1. 尽量**别用** Mock(stub)，优先使用正真的实现
 2. 不是自己写的类尽量别使用 Mock，不要 Stub 不确定的行为
 3.  不要 Mock 被测类，只 Mock 它们的依赖
 
@@ -92,7 +92,7 @@ then(mockWebService).should(times(1)).logout();
 > Mock 对象始终返回方法返回类型的默认值，不会调用  方法的实现
 
 ```java
-// 始终返回某个值
+// 始终返回某个值
 when(mockWebService.isOffline()).thenReturn(true);
 // 按顺序轮流返回一组值
 when(mockWebService.isOffline()).thenReturn(true, false, true);

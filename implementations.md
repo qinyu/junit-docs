@@ -128,4 +128,4 @@ public void should_get_account_by_given_non_existing_account_number() {
 }
 ```
 
-断言使用 Hamcrest 库，见下面介绍
+断言使用 Hamcrest 库，见其它介绍

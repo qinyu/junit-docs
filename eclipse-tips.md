@@ -1,6 +1,4 @@
-#
-
-Eclipse 技巧
+# Eclipse 技巧
 
 ## 静态导入设置
 
@@ -23,13 +21,11 @@ Eclipse 技巧
         ![add-static-import-types](./assets/add-eclipse-static-import-types.png)
         > 如果还有其它需要静态导入的成员，请自行添加
 
-    =======
     进入`Preference -> Java -> Editor -> Content Assist`，勾选`Use static imports (only 1.5 or higher)`
     ![enable-static-import](./assets/enable-eclipse-static-imports.png)
 
 3.  添加静态导入的类型
 
-<<<<<<< HEAD
 进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
 `org.junit`
 `org.junit.Assert`
@@ -40,11 +36,10 @@ Eclipse 技巧
 
 > 如果还有其它需要静态导入的成员，请自行添加
 >
-> > > > > > > Finish Eclipse Tips
 
 这样修改之后，不需再敲击`Assert.`之后才能选择`assertThat`方法；直接敲击`at`之后代码补全就可以找到对应的方法，最终效果如下：
 ![static-members-auto-pops-up](./assets/eclipse-static-member-auto-pops-up.png)
-=======
+
 进入`Preference -> Java -> Editor -> Content Assist -> Favorites`，点击`New Type...`分别加入如下类型：
 `org.junit`
 `org.junit.Assert`
