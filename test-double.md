@@ -12,7 +12,7 @@
 4. 传递依赖太多，准备起来十分困难
 5. 没有返回结果，也没有副作用
 
-##  替身的种类
+## 替身的种类
 
 ![](http://xunitpatterns.com/Types%20Of%20Test%20Doubles.gif)
 
