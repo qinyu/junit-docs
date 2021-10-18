@@ -6,7 +6,7 @@
 
 ---
 
-##  术语
+## 术语
 
 - Test Runner -- 测试执行器，可以创建测试套件(对象)并执行其中的测试对象的一个应用程序(IDE、命令行构建脚本)。
 - **Test (Case) Class/Object** -- 测试(用例)类/对象，包含一组相关的测试方法。
@@ -157,7 +157,7 @@ public void should_do_something_if_some_condition_fulfills() {
 
    供持续集成和提交前检查使用的脚本
 
-   命令 `mvn -Dtest=SomeTest#should test`
+   命令 `mvn -Dtest=SomeTest#should test`
 
    参考文档：[Maven Surefire 插件](https://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html)
 
@@ -175,4 +175,3 @@ public void should_do_something_if_some_condition_fulfills() {
 
 4. 使用 Tag （JUnit 5）将具有相关性的测试方法组织在一起
 
-
