@@ -28,7 +28,7 @@
 
 1. 尽量**别用** Mock(stub)，优先使用正真的实现
 2. 不是自己写的类尽量别使用 Mock，不要 Stub 不确定的行为
-3.  不要 Mock 被测类，只 Mock 它们的依赖
+3. 不要 Mock 被测类，只 Mock 它们的依赖
 
 ## Mockito 入门
 
@@ -72,9 +72,9 @@ mock(SomeClass.class)
 verify(mockWebService).logout()
 // 方法只被调用了一次
 verify(mockWebService, times(1)).logout(); // 最少，最多，从不
-// 有参数的方法被调用--使用 Macther
+// 有参数的方法被调用--使用 Macther
 verify(mockWebService).login(anyString());
-// 有具体参数的方法被调用
+// 有具体参数的方法被调用
 verify(mockWebService).login("aUser")；
 // 试试多个参数!!!
 verify(mockWebService).login("aUser", anyString()); // 要么全部具体值，要么全部使用 Macther
@@ -89,7 +89,7 @@ then(mockWebService).should(times(1)).logout();
 
 ### Stub
 
-> Mock 对象始终返回方法返回类型的默认值，不会调用  方法的实现
+> Mock 对象始终返回方法返回类型的默认值，不会调用  方法的实现
 
 ```java
 // 始终返回某个值
@@ -128,7 +128,7 @@ assertThat(userCaptor.getValue()).isEqualTo("aUser")
 
 1. 使用包装类进行封装(**推荐**)
 2. 使用 Mockito 2.x!!!(**慎重**)
-3. 使用 PowerMock 扩展!!!(** 慎重**)
+3. 使用 PowerMock 扩展!!!(**慎重**)
 
 ### 内部创建的依赖
 
